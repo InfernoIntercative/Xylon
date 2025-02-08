@@ -24,6 +24,7 @@ set(SOURCES
 find_package(SDL2 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
+find_package(SDL2_ttf REQUIRED)
 
 # Include directories
 include_directories(
@@ -43,6 +44,7 @@ set(LIBS
     ${GLEW_LIBRARIES}
     SDL2_image
     SDL2_mixer
+    SDL2_ttf
 )
 
 # Create executable

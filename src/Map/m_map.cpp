@@ -11,10 +11,11 @@ int MAP_HEIGHT = 0;
 must match the header, if there is a warning, there is history
 */
 extern char songMap[255];
-extern char creator[256];
-extern char description[256];
+extern char creator[255];
+extern char description[255];
 extern float ambient_light;
 extern char wallsTexture[255];
+char mappath[255] = {0};
 
 int load_map(const char *filename)
 {
@@ -24,11 +25,16 @@ int load_map(const char *filename)
         printf("Failed to open map file: %s\n", filename);
         exit(EXIT_FAILURE);
     }
+    strncpy(mappath, filename, sizeof(mappath) - 1);
+    mappath[sizeof(mappath) - 1] = '\0';
 
     char line[256];
     float map_version = 0;
     float supported_version = 4.2;
-    char branch[9] = {0};
+    /*
+    initializing an array to a single null character is more efficient than initializing it with all zeros.
+    */
+    char branch[9] = {'\0'};
     int map_section = 0;
 
     int temp_map_width = 0;

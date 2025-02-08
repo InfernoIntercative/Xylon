@@ -1,0 +1,27 @@
+mapversion= 4.2
+branch=beta
+{
+    mapsong= "resources/songs/demo.ogg"
+    creator= russian95
+    description= "test map for the Xylon"
+    ambient_light= 0.0
+}
+
+[Map]
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 0 1 0 0 0 0 0 0 0 0 0 1 0 1
+1 0 1 0 0 0 0 0 0 1 0 0 0 0 1
+1 0 1 0 1 0 0 0 0 0 0 0 0 0 1
+1 0 1 0 0 0 0 0 0 0 0 0 0 0 1
+1 0 0 0 0 0 1 0 0 1 0 0 0 0 1
+1 0 1 0 0 0 0 0 0 0 0 0 0 0 1
+1 0 1 0 0 1 0 0 0 0 0 0 0 0 1
+1 0 1 0 0 0 0 0 0 0 0 0 0 0 1
+1 0 1 0 0 0 0 0 0 0 0 0 0 0 1
+1 0 1 0 0 0 0 1 1 1 1 1 1 1 1
+1 0 1 1 1 1 1 1 0 0 0 0 0 0 1
+1 0 0 0 0 0 0 0 0 0 0 1 0 0 1
+1 1 1 1 1 1 0 1 1 1 1 1 1 1 1
+
+[Textures]
+1=resources/textures/brick_a.png

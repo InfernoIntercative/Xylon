@@ -1,58 +1,62 @@
-Xylon Engine License (Custom)
+Xylon Engine License (XEL) v2.0
 
--- Copyright (c) 2025 Inferno Interactive. All rights reserved.
+Copyright (c) 2025 Inferno Interactive
+Preamble
 
-1. Contributions
+The Xylon Engine ("Software") is free software: you can redistribute it and/or modify it under the terms of this License. You are encouraged to use, modify, and distribute the Software in order to create games and other applications, provided that you comply with the terms set forth in this License.
 
-    You are welcome to contribute to the Xylon Engine by submitting bug fixes, enhancements, and improvements through pull requests.
-    Contributions will be reviewed to ensure they align with the goals of the project.
-    By submitting a contribution, you agree that it becomes part of the Xylon Engine and is licensed under the same terms.
+The Software is provided with the understanding that it is provided "as is", without any express or implied warranty. The authors and copyright holders shall not be held responsible for any damages arising from the use or inability to use the Software.
 
-2. Usage Rights
+- 1. Definitions
 
-    You are free to use the Xylon Engine for any purpose, including creating games, applications, or other products—whether commercial or non-commercial.
-    You can create forks of the Xylon Engine to develop your own projects and share them with others.
+"Software" refers to the Xylon Engine, including all source code, binaries, documentation, and related materials.
 
-3. License Grant
+"User" refers to any individual or entity that obtains a copy of the Software.
 
-    You are granted a non-exclusive, non-transferable license to use the Xylon Engine for any purpose, including personal, educational, commercial, and internal development.
-    You may use the Xylon Engine to create tools, utilities, games, and any other software.
+"Contributors" refer to individuals or entities who submit modifications, bug fixes, improvements, or other contributions to the Software.
 
-4. Distribution
+- 2. Grant of License
 
-    You may freely distribute the Xylon Engine, both in its original and modified forms, provided that the following conditions are met:
-        The software is distributed under this same license.
-        You include proper attribution to the original authors in any documentation or software that uses the Xylon Engine.
+Subject to the terms and conditions of this License, the User is granted the following rights:
 
-5. Commercial Use
+    The right to use the Software for personal or commercial purposes.
+    The right to modify the Software, including the creation of derivative works.
+    The right to distribute the Software and derivative works, in source or binary form, under the terms of this License.
 
-    You are allowed to use the Xylon Engine for commercial purposes, including selling or licensing any software developed using it.
-    If you create derivative works, you must make it clear they are based on the Xylon Engine and include the original license.
+3. Attribution
 
-6. Termination
+You must include the following acknowledgment in any modified or unmodified version of the Software, in a visible location within the User's application or project:
 
-    This license can be terminated if you violate any of its terms.
-    Upon termination, you must stop using the Xylon Engine and destroy all copies you have, though any contributions you made will remain under the terms of this license.
+    "Powered by Xylon"
 
-7. Disclaimer
+This acknowledgment must be displayed in the documentation, about section, splash screen, or any other relevant place in the project or game derived from the Software.
 
-    The Xylon Engine is provided "as-is," with no warranties of any kind, express or implied.
-    The authors are not liable for any damages, claims, or liabilities arising from the use or distribution of the Xylon Engine.
+- 4. Contributions and Credits
 
-8. Indemnity
+Any modifications or improvements made to the Software by a User shall be credited in the official GitHub repository of the Software. Contributors must ensure their contributions are properly attributed, and their names will be listed in the CONTRIBUTORS file or similar documentation in the repository.
 
-    You agree to indemnify, defend, and hold harmless the authors of the Xylon Engine from any claims, damages, or liabilities resulting from your use of the engine.
+- 5. No Warranty
 
-9. Governing Law
+The Software is provided "as is", without any warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the Software or the use or other dealings in the Software.
 
-    This license is governed by the laws of Brazil.
-    Any disputes related to this license will be resolved under the exclusive jurisdiction of the courts in Brazil.
+- 6. License Termination
 
-10. Modifications
+This License will terminate automatically if you fail to comply with any of the terms and conditions of this License. Upon termination, you must cease all use of the Software and destroy all copies of the Software in your possession.
 
-    You are allowed to modify the Xylon Engine for personal or internal use.
-    If you distribute modified versions of the Xylon Engine, you must provide proper attribution and ensure that the modified version is licensed under this same license.
+- 7. Ownership
 
-11. Attribution
+The Software remains the exclusive property of Inferno Interactive. This License does not grant you any ownership rights in the Software. All rights not expressly granted in this License are reserved by the authors and copyright holders.
 
-    If you use the Xylon Engine, including modified versions, you must provide appropriate attribution to the original authors in any documentation or software that uses it.
+- 8. Limitation of Liability
+
+In no event shall Inferno Interactive, its contributors, or any party involved in creating, producing, or distributing the Software, be liable for any damages, whether direct, indirect, incidental, consequential, special, or punitive, arising out of or related to the use or inability to use the Software, even if advised of the possibility of such damages.
+
+- 9. Governing Law
+
+This License shall be governed by and construed in accordance with the laws of Brazil. Any legal actions or proceedings arising out of this License shall be brought exclusively in the courts of Brazil, and you consent to the personal jurisdiction and venue of such courts.
+
+- 10. Miscellaneous
+
+If any provision of this License is found to be invalid or unenforceable, the remainder of the License will remain in full force and effect. No waiver of any provision of this License will be deemed a further or continuing waiver of such provision or any other provision.
+
+By using, modifying, or distributing the Software, you agree to be bound by the terms of this License.

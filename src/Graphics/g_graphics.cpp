@@ -1,8 +1,8 @@
 #include "g_graphics.hpp"
 #include <cmath>
-#include <algorithm> // for std::min and std::max
+#include <algorithm> // for std::min and std::max (btw)
 
-// Draws a vertical wall slice with texture mapping and shading
+// draws a vertical wall slice with texture mapping and shading
 void draw_wall_slice(int screenX, int wallHeight, float shade, GLuint texture,
                      float rayAngle, float rayDirX, float rayDirY, float hitDistance)
 {
@@ -13,21 +13,21 @@ void draw_wall_slice(int screenX, int wallHeight, float shade, GLuint texture,
     int wallTop = screenCenter - (wallHeight / 2);
     int wallBottom = screenCenter + (wallHeight / 2);
 
-    // Calculate hit coordinates and derive a texture coordinate
-    float hitX = camera_pos.x + rayDirX * hitDistance;
-    float hitY = camera_pos.y + rayDirY * hitDistance;
+    // calculate hit coordinates and derive a texture coordinate
+    float hitX = camerapos.x + rayDirX * hitDistance;
+    float hitY = camerapos.y + rayDirY * hitDistance;
     float texX = hitX - std::floor(hitX);
     float texY = hitY - std::floor(hitY);
     float textureCoord = std::fmod(texX + texY, 1.0f);
 
-    // Combine the given shade with ambient lighting and clamp between 0 and 1
+    // combine the given shade with ambient lighting and clamp between 0 and 1
     float finalShade = std::max(0.0f, std::min(1.0f, shade + ambient_light));
 
     glBindTexture(GL_TEXTURE_2D, texture);
     glColor3f(finalShade, finalShade, finalShade);
 
     glBegin(GL_QUADS);
-    const float texSliceWidth = 0.01f; // Width of the texture slice
+    const float texSliceWidth = 0.01f; // width of the texture slice
     float xPos = static_cast<float>(screenX);
 
     glTexCoord2f(textureCoord, 0.0f);
@@ -44,7 +44,7 @@ void draw_wall_slice(int screenX, int wallHeight, float shade, GLuint texture,
     glEnd();
 }
 
-// Renders the 3D scene using a raycasting approach
+// renders the 3D scene using a raycasting approach
 void render_scene()
 {
     float startAngle = yaw - (FOV / 2.0f);
@@ -52,7 +52,7 @@ void render_scene()
 
     GLuint wallTexture = load_texture(wallsTexture);
 
-    // Enable texture mapping once at the start
+    // enable texture mapping once at the start
     glEnable(GL_TEXTURE_2D);
 
     for (int rayIndex = 0, currentAngle = 0; rayIndex < NUM_RAYS; ++rayIndex)
@@ -65,12 +65,12 @@ void render_scene()
         bool hit = false;
         float hitDistance = 0.0f;
 
-        // Ray marching until a wall is hit or maximum distance is reached
+        // ray marching until a wall is hit or maximum distance is reached
         while (!hit && t < 20.0f)
         {
             t += 0.01f;
-            int mapX = static_cast<int>(camera_pos.x + rayDirX * t);
-            int mapY = static_cast<int>(camera_pos.y + rayDirY * t);
+            int mapX = static_cast<int>(camerapos.x + rayDirX * t);
+            int mapY = static_cast<int>(camerapos.y + rayDirY * t);
 
             if (mapX >= 0 && mapX < MAP_WIDTH && mapY >= 0 && mapY < MAP_HEIGHT)
             {
@@ -82,7 +82,7 @@ void render_scene()
             }
             else
             {
-                // Out of bounds; exit the loop to avoid infinite iteration
+                // out of bounds; exit the loop to avoid infinite iteration
                 hit = true;
                 hitDistance = t;
             }
@@ -90,7 +90,8 @@ void render_scene()
 
         if (hit)
         {
-            // Correct distance to prevent fisheye effect
+            // correct distance to prevent fisheye effect
+            // TODO: didnt work
             float correctedDistance = hitDistance * std::cos(rayAngle - yaw);
             int wallHeight = static_cast<int>(SCREEN_HEIGHT / correctedDistance);
             float shade = 1.0f / (1.0f + correctedDistance * 0.1f);

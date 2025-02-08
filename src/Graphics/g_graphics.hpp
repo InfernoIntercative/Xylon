@@ -11,15 +11,15 @@
 // external dependencies
 extern int **map;
 extern float yaw;                                 // player's view yaw
-extern Vector3 camera_pos;                        // camera position
+extern Vector3 camerapos;                         // camera position
 extern GLuint load_texture(const char *filepath); // texture loading function
 
 /*
 header copying the variables from another file
 */
-extern int SCREEN_WIDTH;
-extern int SCREEN_HEIGHT;
-extern int NUM_RAYS;
+const extern int SCREEN_WIDTH;
+const extern int SCREEN_HEIGHT;
+const extern int NUM_RAYS;
 extern int *debug_mode;
 extern int *debug_mode_shade;
 extern char *other_map;

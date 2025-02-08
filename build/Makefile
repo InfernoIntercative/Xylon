@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/russian95/Xylon
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/russian95/Xylon
+CMAKE_BINARY_DIR = /home/russian95/Xylon/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/russian95/Xylon/CMakeFiles /home/russian95/Xylon//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/russian95/Xylon/build/CMakeFiles /home/russian95/Xylon/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/russian95/Xylon/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/russian95/Xylon/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

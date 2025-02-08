@@ -6,7 +6,9 @@
 
 // constants
 constexpr float EPSILON = 1e-6;
-extern const float MOUSE_SENS;
+extern const float MOUSE_SENS; // not used
+extern bool freezeYaw;
+extern bool freezeCameraPos;
 
 /**
  * @brief Handles the player's movement based on keyboard input.
@@ -31,45 +33,49 @@ void handle_movement(const Uint8 *state, float &move_x, float &move_y, float &ya
     float cos_yaw = cos(yaw);
     float sin_yaw = sin(yaw);
 
-    // Forward/Backward movement
-    if (state[SDL_SCANCODE_W])
+    if (!freezeCameraPos)
     {
-        move_x += cos_yaw * PLAYER_SPEED;
-        move_y += sin_yaw * PLAYER_SPEED;
-    }
-    if (state[SDL_SCANCODE_S])
-    {
-        move_x -= cos_yaw * PLAYER_SPEED;
-        move_y -= sin_yaw * PLAYER_SPEED;
+        // Forward/Backward movement
+        if (state[SDL_SCANCODE_W])
+        {
+            move_x += cos_yaw * PLAYER_SPEED;
+            move_y += sin_yaw * PLAYER_SPEED;
+        }
+        if (state[SDL_SCANCODE_S])
+        {
+            move_x -= cos_yaw * PLAYER_SPEED;
+            move_y -= sin_yaw * PLAYER_SPEED;
+        }
+
+        // strafe movement (calculate once and reuse)
+        float strafe_yaw = yaw + M_PI / 2.0f;
+        float cos_strafe_yaw = cos(strafe_yaw);
+        float sin_strafe_yaw = sin(strafe_yaw);
+
+        if (state[SDL_SCANCODE_A])
+        {
+            move_x -= cos_strafe_yaw * PLAYER_SPEED;
+            move_y -= sin_strafe_yaw * PLAYER_SPEED;
+        }
+        if (state[SDL_SCANCODE_D])
+        {
+            move_x += cos_strafe_yaw * PLAYER_SPEED;
+            move_y += sin_strafe_yaw * PLAYER_SPEED;
+        }
+
+        // normalize movement vector to ensure consistent speed
+        float length = sqrt(move_x * move_x + move_y * move_y);
+        if (length > EPSILON)
+        {
+            move_x = (move_x / length) * PLAYER_SPEED;
+            move_y = (move_y / length) * PLAYER_SPEED;
+        }
     }
 
-    // strafe movement (calculate once and reuse)
-    float strafe_yaw = yaw + M_PI / 2.0f;
-    float cos_strafe_yaw = cos(strafe_yaw);
-    float sin_strafe_yaw = sin(strafe_yaw);
-
-    if (state[SDL_SCANCODE_A])
+    if (!freezeYaw)
     {
-        move_x -= cos_strafe_yaw * PLAYER_SPEED;
-        move_y -= sin_strafe_yaw * PLAYER_SPEED;
+        int mouseXRel, mouseYRel;
+        SDL_GetRelativeMouseState(&mouseXRel, &mouseYRel);
+        yaw += mouseXRel * MOUSE_SENS;
     }
-    if (state[SDL_SCANCODE_D])
-    {
-        move_x += cos_strafe_yaw * PLAYER_SPEED;
-        move_y += sin_strafe_yaw * PLAYER_SPEED;
-    }
-
-    // normalize movement vector to ensure consistent speed
-    float length = sqrt(move_x * move_x + move_y * move_y);
-    if (length > EPSILON)
-    {
-        move_x = (move_x / length) * PLAYER_SPEED;
-        move_y = (move_y / length) * PLAYER_SPEED;
-    }
-
-    // handle yaw changes for future use
-    if (state[SDL_SCANCODE_RIGHT])
-        yaw += TURN_SPEED; // yaw right
-    if (state[SDL_SCANCODE_LEFT])
-        yaw -= TURN_SPEED; // yaw left
 }
