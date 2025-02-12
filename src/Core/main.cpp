@@ -27,8 +27,8 @@
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 const int NUM_RAYS = SCREEN_WIDTH;
-#define SCREEN_TITLE "Xylon (849d05794774fdb9e6ec15fb7009e7a4b1e8f23e53b6a9fd26ca0095a58e6e05)"
-#define ANTI_ALIASING 8
+const char SCREEN_TITLE[] = "Xylon (849d05794774fdb9e6ec15fb7009e7a4b1e8f23e53b6a9fd26ca0095a58e6e05)";
+const float ANTI_ALIASING = 8.0f;
 const size_t PATH_MAX_LENGTH = 255;
 
 // engine vars
@@ -189,6 +189,7 @@ bool check_collision(int new_x, int new_y)
 }
 
 // i am lazy, so, next commit i will put in t_text.cpp
+// EDIT: working on another branch with new code update
 void renderText(const char *text, int x, int y)
 {
     SDL_Color color = {255, 255, 255, 255};
