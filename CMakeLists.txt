@@ -18,6 +18,8 @@ set(SOURCES
     ${SRC_DIR}/Graphics/g_graphics.cpp
     ${SRC_DIR}/Player/p_player.cpp
     ${SRC_DIR}/Map/m_map.cpp
+    ${SRC_DIR}/Texts/t_text.cpp
+    ${SRC_DIR}/Console/c_console.cpp
 )
 
 # Find external packages

@@ -1,5 +1,4 @@
-#ifndef MAP_H
-#define MAP_H
+#pragma once
 
 #include <cstddef>
 
@@ -9,12 +8,11 @@ extern int **map;
 
 extern const size_t PATH_MAX_LENGTH;
 
-extern char songMap[255];
-extern char wallsTexture[255];
-extern char skybox[255];
+extern char songMap[256];
+extern char wallsTexture[256];
+extern char skybox[256];
 
 extern float ambient_light;
+extern char mappath[256];
 
 int load_map(const char *filename);
-
-#endif // MAP_H

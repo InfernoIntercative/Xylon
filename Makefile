@@ -142,6 +142,30 @@ clean_project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/clean_project.dir/build.make CMakeFiles/clean_project.dir/build
 .PHONY : clean_project/fast
 
+src/Console/c_console.o: src/Console/c_console.cpp.o
+.PHONY : src/Console/c_console.o
+
+# target to build an object file
+src/Console/c_console.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Console/c_console.cpp.o
+.PHONY : src/Console/c_console.cpp.o
+
+src/Console/c_console.i: src/Console/c_console.cpp.i
+.PHONY : src/Console/c_console.i
+
+# target to preprocess a source file
+src/Console/c_console.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Console/c_console.cpp.i
+.PHONY : src/Console/c_console.cpp.i
+
+src/Console/c_console.s: src/Console/c_console.cpp.s
+.PHONY : src/Console/c_console.s
+
+# target to generate assembly for a file
+src/Console/c_console.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Console/c_console.cpp.s
+.PHONY : src/Console/c_console.cpp.s
+
 src/Core/main.o: src/Core/main.cpp.o
 .PHONY : src/Core/main.o
 
@@ -238,6 +262,30 @@ src/Player/p_player.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Player/p_player.cpp.s
 .PHONY : src/Player/p_player.cpp.s
 
+src/Texts/t_text.o: src/Texts/t_text.cpp.o
+.PHONY : src/Texts/t_text.o
+
+# target to build an object file
+src/Texts/t_text.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Texts/t_text.cpp.o
+.PHONY : src/Texts/t_text.cpp.o
+
+src/Texts/t_text.i: src/Texts/t_text.cpp.i
+.PHONY : src/Texts/t_text.i
+
+# target to preprocess a source file
+src/Texts/t_text.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Texts/t_text.cpp.i
+.PHONY : src/Texts/t_text.cpp.i
+
+src/Texts/t_text.s: src/Texts/t_text.cpp.s
+.PHONY : src/Texts/t_text.s
+
+# target to generate assembly for a file
+src/Texts/t_text.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Texts/t_text.cpp.s
+.PHONY : src/Texts/t_text.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -248,6 +296,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... clean_project"
 	@echo "... XylonEngine"
+	@echo "... src/Console/c_console.o"
+	@echo "... src/Console/c_console.i"
+	@echo "... src/Console/c_console.s"
 	@echo "... src/Core/main.o"
 	@echo "... src/Core/main.i"
 	@echo "... src/Core/main.s"
@@ -260,6 +311,9 @@ help:
 	@echo "... src/Player/p_player.o"
 	@echo "... src/Player/p_player.i"
 	@echo "... src/Player/p_player.s"
+	@echo "... src/Texts/t_text.o"
+	@echo "... src/Texts/t_text.i"
+	@echo "... src/Texts/t_text.s"
 .PHONY : help
 
 

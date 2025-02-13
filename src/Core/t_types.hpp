@@ -1,9 +1,6 @@
-#ifndef TYPES_HPP
-#define TYPES_HPP
+#pragma once
 
 struct Vector3
 {
     float x, y, z;
 };
-
-#endif // TYPES_HPP

@@ -22,5 +22,17 @@
   "command": "/usr/bin/c++  -I/home/russian95/Xylon/src/Core -I/home/russian95/Xylon/src/Map -I/home/russian95/Xylon/src/Player -I/home/russian95/Xylon/src/Graphics -isystem /usr/include/SDL2 -g -o CMakeFiles/XylonEngine.dir/src/Map/m_map.cpp.o -c /home/russian95/Xylon/src/Map/m_map.cpp",
   "file": "/home/russian95/Xylon/src/Map/m_map.cpp",
   "output": "CMakeFiles/XylonEngine.dir/src/Map/m_map.cpp.o"
+},
+{
+  "directory": "/home/russian95/Xylon/build",
+  "command": "/usr/bin/c++  -I/home/russian95/Xylon/src/Core -I/home/russian95/Xylon/src/Map -I/home/russian95/Xylon/src/Player -I/home/russian95/Xylon/src/Graphics -isystem /usr/include/SDL2 -g -o CMakeFiles/XylonEngine.dir/src/Texts/t_text.cpp.o -c /home/russian95/Xylon/src/Texts/t_text.cpp",
+  "file": "/home/russian95/Xylon/src/Texts/t_text.cpp",
+  "output": "CMakeFiles/XylonEngine.dir/src/Texts/t_text.cpp.o"
+},
+{
+  "directory": "/home/russian95/Xylon/build",
+  "command": "/usr/bin/c++  -I/home/russian95/Xylon/src/Core -I/home/russian95/Xylon/src/Map -I/home/russian95/Xylon/src/Player -I/home/russian95/Xylon/src/Graphics -isystem /usr/include/SDL2 -g -o CMakeFiles/XylonEngine.dir/src/Console/c_console.cpp.o -c /home/russian95/Xylon/src/Console/c_console.cpp",
+  "file": "/home/russian95/Xylon/src/Console/c_console.cpp",
+  "output": "CMakeFiles/XylonEngine.dir/src/Console/c_console.cpp.o"
 }
 ]

@@ -1,5 +1,5 @@
 mapversion= 4.2
-branch=beta
+branch=stable
 {
     mapsong= "resources/songs/demo.ogg"
     creator= russian95
@@ -7,7 +7,7 @@ branch=beta
     ambient_light= 0.0
 }
 
-[Map]
+[MAP]
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 1 0 0 0 0 0 0 0 0 0 1 0 1
 1 0 1 0 0 0 0 0 0 1 0 0 0 0 1
@@ -23,5 +23,6 @@ branch=beta
 1 0 0 0 0 0 0 0 0 0 0 1 0 0 1
 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1
 
-[Textures]
-1=resources/textures/brick_a.png
+[TEXTURES]
+skybox=resources/skybox/default.png
+1=resources/textures/notextureinpathexample.png

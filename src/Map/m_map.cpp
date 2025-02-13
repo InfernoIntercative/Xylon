@@ -10,12 +10,13 @@ int MAP_HEIGHT = 0;
 /*
 must match the header, if there is a warning, there is history
 */
-extern char songMap[255];
-extern char creator[255];
-extern char description[255];
+extern char songMap[256];
+extern char creator[256];
+extern char description[256];
+extern char skybox[256];
 extern float ambient_light;
-extern char wallsTexture[255];
-char mappath[255] = {0};
+extern char wallsTexture[256];
+char mappath[256] = {0};
 
 int load_map(const char *filename)
 {
@@ -75,12 +76,12 @@ int load_map(const char *filename)
         {
             sscanf(line, "    ambient_light= %f", &ambient_light);
         }
-        else if (strstr(line, "[Map]") != NULL)
+        else if (strstr(line, "[MAP]") != NULL)
         {
             map_section = 1;
             continue;
         }
-        else if (strstr(line, "[Textures]") != NULL)
+        else if (strstr(line, "[TEXTURES]") != NULL)
         {
             break;
         }
@@ -142,12 +143,12 @@ int load_map(const char *filename)
     while (fgets(line, sizeof(line), file))
     {
         line[strcspn(line, "\n")] = 0;
-        if (strstr(line, "[Map]") != NULL)
+        if (strstr(line, "[MAP]") != NULL)
         {
             map_section = 1;
             continue;
         }
-        else if (strstr(line, "[Textures]") != NULL)
+        else if (strstr(line, "[TEXTURES]") != NULL)
         {
             break;
         }
@@ -176,6 +177,12 @@ int load_map(const char *filename)
     // read texture info (after the [Textures] section)
     while (fgets(line, sizeof(line), file))
     {
+        if (strstr(line, "skybox=") != NULL)
+        {
+            sscanf(line, "skybox=%255[^\n]", skybox);
+            printf("Loaded texture: %s\n", skybox);
+            break;
+        }
         if (strstr(line, "1=") != NULL)
         {
             sscanf(line, "1=%s", wallsTexture);
