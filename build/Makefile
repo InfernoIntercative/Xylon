@@ -142,6 +142,30 @@ clean_project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/clean_project.dir/build.make CMakeFiles/clean_project.dir/build
 .PHONY : clean_project/fast
 
+src/Console/c_console.o: src/Console/c_console.cpp.o
+.PHONY : src/Console/c_console.o
+
+# target to build an object file
+src/Console/c_console.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Console/c_console.cpp.o
+.PHONY : src/Console/c_console.cpp.o
+
+src/Console/c_console.i: src/Console/c_console.cpp.i
+.PHONY : src/Console/c_console.i
+
+# target to preprocess a source file
+src/Console/c_console.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Console/c_console.cpp.i
+.PHONY : src/Console/c_console.cpp.i
+
+src/Console/c_console.s: src/Console/c_console.cpp.s
+.PHONY : src/Console/c_console.s
+
+# target to generate assembly for a file
+src/Console/c_console.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Console/c_console.cpp.s
+.PHONY : src/Console/c_console.cpp.s
+
 src/Core/main.o: src/Core/main.cpp.o
 .PHONY : src/Core/main.o
 
@@ -190,29 +214,29 @@ src/Graphics/g_graphics.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Graphics/g_graphics.cpp.s
 .PHONY : src/Graphics/g_graphics.cpp.s
 
-src/Map/m_map.o: src/Map/m_map.cpp.o
-.PHONY : src/Map/m_map.o
+src/Levels/l_levels.o: src/Levels/l_levels.cpp.o
+.PHONY : src/Levels/l_levels.o
 
 # target to build an object file
-src/Map/m_map.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Map/m_map.cpp.o
-.PHONY : src/Map/m_map.cpp.o
+src/Levels/l_levels.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Levels/l_levels.cpp.o
+.PHONY : src/Levels/l_levels.cpp.o
 
-src/Map/m_map.i: src/Map/m_map.cpp.i
-.PHONY : src/Map/m_map.i
+src/Levels/l_levels.i: src/Levels/l_levels.cpp.i
+.PHONY : src/Levels/l_levels.i
 
 # target to preprocess a source file
-src/Map/m_map.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Map/m_map.cpp.i
-.PHONY : src/Map/m_map.cpp.i
+src/Levels/l_levels.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Levels/l_levels.cpp.i
+.PHONY : src/Levels/l_levels.cpp.i
 
-src/Map/m_map.s: src/Map/m_map.cpp.s
-.PHONY : src/Map/m_map.s
+src/Levels/l_levels.s: src/Levels/l_levels.cpp.s
+.PHONY : src/Levels/l_levels.s
 
 # target to generate assembly for a file
-src/Map/m_map.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Map/m_map.cpp.s
-.PHONY : src/Map/m_map.cpp.s
+src/Levels/l_levels.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Levels/l_levels.cpp.s
+.PHONY : src/Levels/l_levels.cpp.s
 
 src/Player/p_player.o: src/Player/p_player.cpp.o
 .PHONY : src/Player/p_player.o
@@ -238,6 +262,30 @@ src/Player/p_player.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Player/p_player.cpp.s
 .PHONY : src/Player/p_player.cpp.s
 
+src/Texts/t_text.o: src/Texts/t_text.cpp.o
+.PHONY : src/Texts/t_text.o
+
+# target to build an object file
+src/Texts/t_text.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Texts/t_text.cpp.o
+.PHONY : src/Texts/t_text.cpp.o
+
+src/Texts/t_text.i: src/Texts/t_text.cpp.i
+.PHONY : src/Texts/t_text.i
+
+# target to preprocess a source file
+src/Texts/t_text.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Texts/t_text.cpp.i
+.PHONY : src/Texts/t_text.cpp.i
+
+src/Texts/t_text.s: src/Texts/t_text.cpp.s
+.PHONY : src/Texts/t_text.s
+
+# target to generate assembly for a file
+src/Texts/t_text.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Texts/t_text.cpp.s
+.PHONY : src/Texts/t_text.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -248,18 +296,24 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... clean_project"
 	@echo "... XylonEngine"
+	@echo "... src/Console/c_console.o"
+	@echo "... src/Console/c_console.i"
+	@echo "... src/Console/c_console.s"
 	@echo "... src/Core/main.o"
 	@echo "... src/Core/main.i"
 	@echo "... src/Core/main.s"
 	@echo "... src/Graphics/g_graphics.o"
 	@echo "... src/Graphics/g_graphics.i"
 	@echo "... src/Graphics/g_graphics.s"
-	@echo "... src/Map/m_map.o"
-	@echo "... src/Map/m_map.i"
-	@echo "... src/Map/m_map.s"
+	@echo "... src/Levels/l_levels.o"
+	@echo "... src/Levels/l_levels.i"
+	@echo "... src/Levels/l_levels.s"
 	@echo "... src/Player/p_player.o"
 	@echo "... src/Player/p_player.i"
 	@echo "... src/Player/p_player.s"
+	@echo "... src/Texts/t_text.o"
+	@echo "... src/Texts/t_text.i"
+	@echo "... src/Texts/t_text.s"
 .PHONY : help
 
 

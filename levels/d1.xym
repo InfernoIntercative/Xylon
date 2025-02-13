@@ -1,13 +1,13 @@
-mapversion= 4.2
-branch=beta
+level_version= 4.21
+branch=stable
 {
-    mapsong= "resources/songs/demo.ogg"
+    level_song= "resources/songs/demo.ogg"
     creator= russian95
-    description= "test map for the Xylon"
+    description= "test level for the Xylon"
     ambient_light= 0.0
 }
 
-[Map]
+[LEVELDATA]
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 1 0 0 0 0 0 0 0 0 0 1 0 1
 1 0 1 0 0 0 0 0 0 0 0 0 0 0 1
@@ -23,5 +23,6 @@ branch=beta
 1 0 1 0 0 0 0 1 0 0 0 1 0 0 1
 1 1 1 1 1 1 0 1 0 1 1 1 1 1 1
 
-[Textures]
+[TEXTURES]
+skybox=resources/skybox/default.png
 1=resources/textures/brick.png

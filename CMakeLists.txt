@@ -17,7 +17,9 @@ set(SOURCES
     ${SRC_DIR}/Core/main.cpp
     ${SRC_DIR}/Graphics/g_graphics.cpp
     ${SRC_DIR}/Player/p_player.cpp
-    ${SRC_DIR}/Map/m_map.cpp
+    ${SRC_DIR}/Levels/l_levels.cpp
+    ${SRC_DIR}/Texts/t_text.cpp
+    ${SRC_DIR}/Console/c_console.cpp
 )
 
 # Find external packages
@@ -29,7 +31,7 @@ find_package(SDL2_ttf REQUIRED)
 # Include directories
 include_directories(
     ${SRC_DIR}/Core
-    ${SRC_DIR}/Map
+    ${SRC_DIR}/Levels
     ${SRC_DIR}/Player
     ${SRC_DIR}/Graphics
     ${SDL2_INCLUDE_DIRS}

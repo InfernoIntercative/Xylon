@@ -1,18 +1,24 @@
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
+#pragma once
 
 #include <SDL2/SDL.h>
+#include "../Core/t_types.hpp"
 
 // define the player's speed (adjust as needed)
 extern float delta_time;
-#define PLAYER_SPEED 10.0f * delta_time;
-#define TURN_SPEED 1.2f * delta_time;
-const float MOUSE_SENS = 0.1 / 256.0f;
+extern const float BASE_PLAYER_SPEED;
+extern const float BASE_TURN_SPEED;
+extern const float MOUSE_SENSITIVITY;
 
 // player's movement angles (yaw and yaw)
 extern float yaw; // horizontal angle
 
-// function to handle player movement based on key states
-void handle_movement(const Uint8 *state, float &move_x, float &move_y, float &yaw);
+// important
+extern Vector3 camerapos;
+extern Vector3 og_camerapos;
+extern float yaw;
+extern float og_yaw;
+extern bool freezeCameraPos;
+extern bool freezeYaw;
 
-#endif // PLAYER_HPP
+// function to handle player movement based on key states
+void handle_movement(const Uint8 *state, float &move_x, float &move_y, float &yaw, float delta_time);

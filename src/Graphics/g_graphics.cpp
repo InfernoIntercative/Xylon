@@ -2,9 +2,9 @@
 #include <cmath>
 #include <algorithm> // for std::min and std::max (btw)
 
-// draws a vertical wall slice with texture mapping and shading
+// draws a vertical wall slice with texture Levelsping and shading
 void draw_wall_slice(int screenX, int wallHeight, float shade, GLuint texture,
-                     float rayAngle, float rayDirX, float rayDirY, float hitDistance)
+                     float rayAngle, float rayDirX, float rayDirY, float fuckDistance)
 {
     if (wallHeight <= 0 || screenX < 0 || screenX >= SCREEN_WIDTH || texture == 0)
         return;
@@ -14,8 +14,8 @@ void draw_wall_slice(int screenX, int wallHeight, float shade, GLuint texture,
     int wallBottom = screenCenter + (wallHeight / 2);
 
     // calculate hit coordinates and derive a texture coordinate
-    float hitX = camerapos.x + rayDirX * hitDistance;
-    float hitY = camerapos.y + rayDirY * hitDistance;
+    float hitX = camerapos.x + rayDirX * fuckDistance;
+    float hitY = camerapos.y + rayDirY * fuckDistance;
     float texX = hitX - std::floor(hitX);
     float texY = hitY - std::floor(hitY);
     float textureCoord = std::fmod(texX + texY, 1.0f);
@@ -52,7 +52,7 @@ void render_scene()
 
     GLuint wallTexture = load_texture(wallsTexture);
 
-    // enable texture mapping once at the start
+    // enable texture Levelsping once at the start
     glEnable(GL_TEXTURE_2D);
 
     for (int rayIndex = 0, currentAngle = 0; rayIndex < NUM_RAYS; ++rayIndex)
@@ -62,42 +62,67 @@ void render_scene()
         float rayDirY = std::sin(rayAngle);
 
         float t = 0.0f;
-        bool hit = false;
-        float hitDistance = 0.0f;
+        bool fucked = false;
+        float fuckDistance = 0.0f;
 
         // ray marching until a wall is hit or maximum distance is reached
-        while (!hit && t < 20.0f)
+        while (!fucked && t < 20.0f)
         {
             t += 0.01f;
-            int mapX = static_cast<int>(camerapos.x + rayDirX * t);
-            int mapY = static_cast<int>(camerapos.y + rayDirY * t);
+            int LevelsX = static_cast<int>(camerapos.x + rayDirX * t);
+            int LevelsY = static_cast<int>(camerapos.y + rayDirY * t);
 
-            if (mapX >= 0 && mapX < MAP_WIDTH && mapY >= 0 && mapY < MAP_HEIGHT)
+            if (LevelsX >= 0 && LevelsX < level_WIDTH && LevelsY >= 0 && LevelsY < level_HEIGHT)
             {
-                if (map[mapY][mapX] == 1)
+                if (level[LevelsY][LevelsX] == 1)
                 {
-                    hit = true;
-                    hitDistance = t;
+                    fucked = true;
+                    fuckDistance = t;
                 }
             }
             else
             {
                 // out of bounds; exit the loop to avoid infinite iteration
-                hit = true;
-                hitDistance = t;
+                fucked = true;
+                fuckDistance = t;
             }
         }
 
-        if (hit)
+        if (fucked)
         {
             // correct distance to prevent fisheye effect
-            // TODO: didnt work
-            float correctedDistance = hitDistance * std::cos(rayAngle - yaw);
+            // FIXME: didnt work
+            float correctedDistance = fuckDistance * std::cos(rayAngle - yaw);
             int wallHeight = static_cast<int>(SCREEN_HEIGHT / correctedDistance);
             float shade = 1.0f / (1.0f + correctedDistance * 0.1f);
-            draw_wall_slice(rayIndex, wallHeight, shade, wallTexture, rayAngle, rayDirX, rayDirY, hitDistance);
+            draw_wall_slice(rayIndex, wallHeight, shade, wallTexture, rayAngle, rayDirX, rayDirY, fuckDistance);
         }
     }
+
+    glDisable(GL_TEXTURE_2D);
+}
+
+// simple skybox render for inital on project =D
+void render_skybox()
+{
+    GLuint sky = load_texture(skybox); // load the skybox
+
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, sky);
+    glColor3f(1.0f, 1.0f, 1.0f);
+
+    glBegin(GL_QUADS);
+
+    glTexCoord2f(0.0f, 0.0f);
+    glVertex2f(0, 0);
+    glTexCoord2f(1.0f, 0.0f);
+    glVertex2f(SCREEN_WIDTH, 0);
+    glTexCoord2f(1.0f, 1.0f);
+    glVertex2f(SCREEN_WIDTH, SCREEN_HEIGHT / 2);
+    glTexCoord2f(0.0f, 1.0f);
+    glVertex2f(0, SCREEN_HEIGHT / 2);
+
+    glEnd();
 
     glDisable(GL_TEXTURE_2D);
 }

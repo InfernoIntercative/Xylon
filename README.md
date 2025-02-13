@@ -14,7 +14,7 @@ Xylon is a super-optimized 3D game engine designed to deliver high performance a
 ## Requirements ⚙️
 
 > [!WARNING]
-Windows platforms are not supported in this Alpha release. 🚫
+Windows platforms are not supported in this Beta release. 🚫
 
 - **Operating System**: Linux (Arch Linux recommended) 🐧
 - **Language**: C++11 or later
