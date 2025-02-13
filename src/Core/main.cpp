@@ -18,7 +18,7 @@
 #include <GL/glu.h>
 
 // engine files
-#include "../Map/m_map.hpp"
+#include "../Levels/l_levels.hpp"
 #include "../Player/p_player.hpp"
 #include "../Graphics/g_graphics.hpp"
 #include "../Texts/t_text.hpp"
@@ -42,7 +42,7 @@ extern const size_t PATH_MAX_LENGTH;
 // global vars
 int *camera_debug_mode = nullptr;
 int *debug_mode_shade = nullptr;
-char *other_map = nullptr;
+char *other_Levels = nullptr;
 bool party = true;
 
 // set the pointer to "nullptr"
@@ -52,14 +52,14 @@ extern TTF_Font *font;
 const float FOV = M_PI / 3.0f; // field of view
 float delta_time = 0.0f;       // do not remove bitch, i am warning you
 
-// map and ui
-extern const char defaultMapPath[256];
-extern char mappath[256];
+// Level and ui
+extern const char defaultLevelsPath[256];
+extern char level_path[256];
 
-// other map var
+// other Level var
 char wallsTexture[256];
 char skybox[256];
-char songMap[256];
+char song_level[256];
 char creator[256];
 char description[256];
 float ambient_light = 0.0f;
@@ -184,11 +184,11 @@ int setup_projection()
 // function to check for collisions during gameplay
 bool check_collision(int new_x, int new_y)
 {
-    // verifies that the new position does not exceed the map boundaries and is a walkable area
-    if (new_x < 0 || new_y < 0 || new_x >= MAP_WIDTH || new_y >= MAP_HEIGHT)
+    // verifies that the new position does not exceed the level boundaries and is a walkable area
+    if (new_x < 0 || new_y < 0 || new_x >= level_WIDTH || new_y >= level_HEIGHT)
         return false;
-    // checks whether the map at the new position contains a walkable tile (1)
-    return map[new_y][new_x] == 1;
+    // checks whether the level at the new position contains a walkable tile (1)
+    return level[new_y][new_x] == 1;
 }
 
 // function to initialize SDL and its subsystems (Video, Audio, and Image).
@@ -249,8 +249,8 @@ void cleanup_resources(SDL_Window *window, SDL_GLContext context, Mix_Music *mus
     if (debug_mode_shade)
         free(debug_mode_shade);
     Mix_CloseAudio();
-    if (other_map)
-        free(other_map);
+    if (other_Levels)
+        free(other_Levels);
     SDL_Quit();
 }
 
@@ -265,6 +265,7 @@ int main(int argc, char *argv[])
                                           SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                           SCREEN_WIDTH, SCREEN_HEIGHT,
                                           SDL_WINDOW_OPENGL);
+
     SDL_SetRelativeMouseMode(SDL_TRUE);
 
     if (!window)
@@ -293,14 +294,14 @@ int main(int argc, char *argv[])
     }
     glEnable(GL_MULTISAMPLE);
 
-    printf("Loading default map...\n");
-    if (load_map(defaultMapPath) != 0)
+    printf("Loading default Level...\n");
+    if (load_levels(defaultLevelsPath) != 0)
     {
         cleanup_resources(window, context, nullptr);
         return EXIT_FAILURE;
     }
 
-    Mix_Music *music = Mix_LoadMUS(songMap);
+    Mix_Music *music = Mix_LoadMUS(song_level);
     if (!music)
     {
         fprintf(stderr, "Failed to load music: %s\n", Mix_GetError());

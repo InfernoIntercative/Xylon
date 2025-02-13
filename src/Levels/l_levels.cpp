@@ -1,57 +1,57 @@
-#include "m_map.hpp"
+#include "l_levels.hpp"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-int **map = NULL;
-int MAP_WIDTH = 0;
-int MAP_HEIGHT = 0;
+int **level = NULL;
+int level_WIDTH = 0;
+int level_HEIGHT = 0;
 
 /*
 must match the header, if there is a warning, there is history
 */
-extern char songMap[256];
+extern char song_level[256];
 extern char creator[256];
 extern char description[256];
 extern char skybox[256];
 extern float ambient_light;
 extern char wallsTexture[256];
-char mappath[256] = {0};
+char level_path[256] = {0};
 
-int load_map(const char *filename)
+int load_levels(const char *filename)
 {
     FILE *file = fopen(filename, "r");
     if (!file)
     {
-        printf("Failed to open map file: %s\n", filename);
-        exit(EXIT_FAILURE);
+        printf("[WARNING] Failed to open level file: %s\n", filename);
+        return 1;
     }
-    strncpy(mappath, filename, sizeof(mappath) - 1);
-    mappath[sizeof(mappath) - 1] = '\0';
+    strncpy(level_path, filename, sizeof(level_path) - 1);
+    level_path[sizeof(level_path) - 1] = '\0';
 
     char line[256];
-    float map_version = 0;
-    float supported_version = 4.2;
+    float level_version = 0;
+    float supported_version = 4.21;
     /*
     initializing an array to a single null character is more efficient than initializing it with all zeros.
     */
     char branch[9] = {'\0'};
-    int map_section = 0;
+    int level_section = 0;
 
-    int temp_map_width = 0;
-    int temp_map_height = 0;
+    int temp_Levels_width = 0;
+    int temp_level_height = 0;
     int current_row = 0;
 
     // first pass: determine dimensions and metadata
     while (fgets(line, sizeof(line), file))
     {
         line[strcspn(line, "\n")] = 0;
-        if (strstr(line, "mapversion=") != NULL)
+        if (strstr(line, "level_version=") != NULL)
         {
-            sscanf(line, "mapversion =%f", &map_version);
-            if (map_version != supported_version)
+            sscanf(line, "level_version =%f", &level_version);
+            if (level_version != supported_version)
             {
-                printf("Unsupported map version: %f\n", map_version);
+                printf("Unsupported level version: %f\n", level_version);
                 fclose(file);
                 return -1;
             }
@@ -60,9 +60,9 @@ int load_map(const char *filename)
         {
             sscanf(line, "branch=%s", branch);
         }
-        else if (strstr(line, "mapsong=") != NULL)
+        else if (strstr(line, "level_song=") != NULL)
         {
-            sscanf(line, "    mapsong= %*c%[^\"]%*c", songMap);
+            sscanf(line, "    level_song= %*c%[^\"]%*c", song_level);
         }
         else if (strstr(line, "creator=") != NULL)
         {
@@ -76,9 +76,9 @@ int load_map(const char *filename)
         {
             sscanf(line, "    ambient_light= %f", &ambient_light);
         }
-        else if (strstr(line, "[MAP]") != NULL)
+        else if (strstr(line, "[LEVELDATA]") != NULL)
         {
-            map_section = 1;
+            level_section = 1;
             continue;
         }
         else if (strstr(line, "[TEXTURES]") != NULL)
@@ -86,49 +86,49 @@ int load_map(const char *filename)
             break;
         }
 
-        if (map_section && strlen(line) > 0 && line[0] != '[')
+        if (level_section && strlen(line) > 0 && line[0] != '[')
         {
             // use a temporary copy so strtok doesn't alter the original line.
             char tempLine[256];
             strcpy(tempLine, line);
-            if (temp_map_width == 0)
+            if (temp_Levels_width == 0)
             {
                 char *token = strtok(tempLine, " ");
                 while (token != NULL)
                 {
-                    temp_map_width++;
+                    temp_Levels_width++;
                     token = strtok(NULL, " ");
                 }
             }
-            temp_map_height++;
+            temp_level_height++;
         }
     }
 
-    if (temp_map_height == 0 || temp_map_width == 0)
+    if (temp_level_height == 0 || temp_Levels_width == 0)
     {
-        printf("Invalid map dimensions.\n");
+        printf("Invalid level dimensions.\n");
         fclose(file);
         return -1;
     }
 
-    // save to global MAP_WIDTH and MAP_HEIGHT
-    MAP_WIDTH = temp_map_width;
-    MAP_HEIGHT = temp_map_height;
+    // save to global level_WIDTH and level_HEIGHT
+    level_WIDTH = temp_Levels_width;
+    level_HEIGHT = temp_level_height;
 
-    // allocate the map array
-    map = (int **)malloc(MAP_HEIGHT * sizeof(int *));
-    if (!map)
+    // allocate the level array
+    level = (int **)malloc(level_HEIGHT * sizeof(int *));
+    if (!level)
     {
-        printf("Failed to allocate memory for map rows.\n");
+        printf("Failed to allocate memory for level rows.\n");
         fclose(file);
         return -1;
     }
-    for (int i = 0; i < MAP_HEIGHT; i++)
+    for (int i = 0; i < level_HEIGHT; i++)
     {
-        map[i] = (int *)malloc(MAP_WIDTH * sizeof(int));
-        if (!map[i])
+        level[i] = (int *)malloc(level_WIDTH * sizeof(int));
+        if (!level[i])
         {
-            printf("Failed to allocate memory for map columns.\n");
+            printf("Failed to allocate memory for level columns.\n");
             fclose(file);
             return -1;
         }
@@ -136,16 +136,16 @@ int load_map(const char *filename)
 
     // reset file pointer for second pass
     fseek(file, 0, SEEK_SET);
-    map_section = 0;
+    level_section = 0;
     current_row = 0;
 
-    // second pass: load the actual map data
+    // second pass: load the actual level data
     while (fgets(line, sizeof(line), file))
     {
         line[strcspn(line, "\n")] = 0;
-        if (strstr(line, "[MAP]") != NULL)
+        if (strstr(line, "[LEVELDATA]") != NULL)
         {
-            map_section = 1;
+            level_section = 1;
             continue;
         }
         else if (strstr(line, "[TEXTURES]") != NULL)
@@ -153,20 +153,20 @@ int load_map(const char *filename)
             break;
         }
 
-        if (map_section && strlen(line) > 0 && line[0] != '[')
+        if (level_section && strlen(line) > 0 && line[0] != '[')
         {
-            if (current_row >= MAP_HEIGHT)
+            if (current_row >= level_HEIGHT)
                 break;
 
             char *token = strtok(line, " ");
             int col = 0;
-            while (token != NULL && col < MAP_WIDTH)
+            while (token != NULL && col < level_WIDTH)
             {
-                map[current_row][col] = atoi(token);
+                level[current_row][col] = atoi(token);
                 token = strtok(NULL, " ");
                 col++;
             }
-            if (col != MAP_WIDTH)
+            if (col != level_WIDTH)
             {
                 printf("Warning: Row %d has unexpected number of columns.\n", current_row);
             }
@@ -207,20 +207,20 @@ int load_map(const char *filename)
     }
 
     fclose(file);
-    printf("Map loaded successfully!\n\n");
+    printf("Level loaded successfully!\n\n");
 
     if (strcmp(branch, "beta") == 0)
     {
         printf("╔════════════ WARNING ════════════╗\n");
-        printf("║       Beta map detected!        ║\n");
+        printf("║       Beta Level detected!        ║\n");
         printf("║      These can be unstable!     ║\n");
         printf("╚═════════════════════════════════╝\n\n");
-        printf("Map Info:\n");
-        printf("├─ Version: %.1f\n", map_version);
-        printf("├─ Map Path: %s\n", filename);
+        printf("Level Info:\n");
+        printf("├─ Version: %.1f\n", level_version);
+        printf("├─ Level Path: %s\n", filename);
         printf("├─ Branch: %s\n", branch);
         printf("├─ Creator: %s\n", creator);
-        printf("├─ Song: %s\n", songMap);
+        printf("├─ Song: %s\n", song_level);
         printf("├─ Description: %s\n", description);
         printf("└─ Ambient Light: %.1f\n\n", ambient_light);
     }

@@ -7,4 +7,4 @@ if [ ! -d "$dir" ]; then
   exit 1
 fi
 
-find "$dir" -type f -exec sha256sum {} \;
+find "$dir" -type f -exec sha256sum {} \; > correct_hash.TXT

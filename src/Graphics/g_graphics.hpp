@@ -5,10 +5,10 @@
 #include <math.h>
 #include <stdio.h>
 #include "../Core/t_types.hpp"
-#include "../Map/m_map.hpp"
+#include "../Levels/l_levels.hpp"
 
 // external dependencies
-extern int **map;
+extern int **level;
 extern float yaw;                                 // player's view yaw
 extern Vector3 camerapos;                         // camera position
 extern GLuint load_texture(const char *filepath); // texture loading function
@@ -21,7 +21,7 @@ extern const int SCREEN_HEIGHT;
 extern const int NUM_RAYS;
 extern int *debug_mode;
 extern int *debug_mode_shade;
-extern char *other_map;
+extern char *other_Levels;
 extern const float FOV;
 extern float ambient_light;
 

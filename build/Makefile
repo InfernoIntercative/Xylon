@@ -214,29 +214,29 @@ src/Graphics/g_graphics.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Graphics/g_graphics.cpp.s
 .PHONY : src/Graphics/g_graphics.cpp.s
 
-src/Map/m_map.o: src/Map/m_map.cpp.o
-.PHONY : src/Map/m_map.o
+src/Levels/l_levels.o: src/Levels/l_levels.cpp.o
+.PHONY : src/Levels/l_levels.o
 
 # target to build an object file
-src/Map/m_map.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Map/m_map.cpp.o
-.PHONY : src/Map/m_map.cpp.o
+src/Levels/l_levels.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Levels/l_levels.cpp.o
+.PHONY : src/Levels/l_levels.cpp.o
 
-src/Map/m_map.i: src/Map/m_map.cpp.i
-.PHONY : src/Map/m_map.i
+src/Levels/l_levels.i: src/Levels/l_levels.cpp.i
+.PHONY : src/Levels/l_levels.i
 
 # target to preprocess a source file
-src/Map/m_map.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Map/m_map.cpp.i
-.PHONY : src/Map/m_map.cpp.i
+src/Levels/l_levels.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Levels/l_levels.cpp.i
+.PHONY : src/Levels/l_levels.cpp.i
 
-src/Map/m_map.s: src/Map/m_map.cpp.s
-.PHONY : src/Map/m_map.s
+src/Levels/l_levels.s: src/Levels/l_levels.cpp.s
+.PHONY : src/Levels/l_levels.s
 
 # target to generate assembly for a file
-src/Map/m_map.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Map/m_map.cpp.s
-.PHONY : src/Map/m_map.cpp.s
+src/Levels/l_levels.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/XylonEngine.dir/build.make CMakeFiles/XylonEngine.dir/src/Levels/l_levels.cpp.s
+.PHONY : src/Levels/l_levels.cpp.s
 
 src/Player/p_player.o: src/Player/p_player.cpp.o
 .PHONY : src/Player/p_player.o
@@ -305,9 +305,9 @@ help:
 	@echo "... src/Graphics/g_graphics.o"
 	@echo "... src/Graphics/g_graphics.i"
 	@echo "... src/Graphics/g_graphics.s"
-	@echo "... src/Map/m_map.o"
-	@echo "... src/Map/m_map.i"
-	@echo "... src/Map/m_map.s"
+	@echo "... src/Levels/l_levels.o"
+	@echo "... src/Levels/l_levels.i"
+	@echo "... src/Levels/l_levels.s"
 	@echo "... src/Player/p_player.o"
 	@echo "... src/Player/p_player.i"
 	@echo "... src/Player/p_player.s"

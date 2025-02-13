@@ -2,7 +2,7 @@
 #include <cmath>
 #include <algorithm> // for std::min and std::max (btw)
 
-// draws a vertical wall slice with texture mapping and shading
+// draws a vertical wall slice with texture Levelsping and shading
 void draw_wall_slice(int screenX, int wallHeight, float shade, GLuint texture,
                      float rayAngle, float rayDirX, float rayDirY, float fuckDistance)
 {
@@ -52,7 +52,7 @@ void render_scene()
 
     GLuint wallTexture = load_texture(wallsTexture);
 
-    // enable texture mapping once at the start
+    // enable texture Levelsping once at the start
     glEnable(GL_TEXTURE_2D);
 
     for (int rayIndex = 0, currentAngle = 0; rayIndex < NUM_RAYS; ++rayIndex)
@@ -69,12 +69,12 @@ void render_scene()
         while (!fucked && t < 20.0f)
         {
             t += 0.01f;
-            int mapX = static_cast<int>(camerapos.x + rayDirX * t);
-            int mapY = static_cast<int>(camerapos.y + rayDirY * t);
+            int LevelsX = static_cast<int>(camerapos.x + rayDirX * t);
+            int LevelsY = static_cast<int>(camerapos.y + rayDirY * t);
 
-            if (mapX >= 0 && mapX < MAP_WIDTH && mapY >= 0 && mapY < MAP_HEIGHT)
+            if (LevelsX >= 0 && LevelsX < level_WIDTH && LevelsY >= 0 && LevelsY < level_HEIGHT)
             {
-                if (map[mapY][mapX] == 1)
+                if (level[LevelsY][LevelsX] == 1)
                 {
                     fucked = true;
                     fuckDistance = t;
