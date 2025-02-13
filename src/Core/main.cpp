@@ -53,37 +53,41 @@ const float FOV = M_PI / 3.0f; // field of view
 float delta_time = 0.0f;       // do not remove bitch, i am warning you
 
 // map and ui
-extern const char defaultMapPath[PATH_MAX_LENGTH];
-extern char mappath[PATH_MAX_LENGTH];
+extern const char defaultMapPath[256];
+extern char mappath[256];
 
 // other map var
-char wallsTexture[PATH_MAX_LENGTH];
+char wallsTexture[256];
 char skybox[256];
-char songMap[PATH_MAX_LENGTH];
-char creator[PATH_MAX_LENGTH];
-char description[PATH_MAX_LENGTH];
+char songMap[256];
+char creator[256];
+char description[256];
 float ambient_light = 0.0f;
 
 // cache textures
 std::unordered_map<std::string, GLuint> textureCache;
 
+// Function to load textures from files
 GLuint load_texture(const char *filename)
 {
-    char clean_filename[512];
+    // copy the input filename into a clean variable, removing any trailing newline characters
+    char clean_filename[256];
     strncpy(clean_filename, filename, sizeof(clean_filename) - 1);
     clean_filename[sizeof(clean_filename) - 1] = '\0';
     clean_filename[strcspn(clean_filename, "\r\n")] = 0;
 
+    // check if the texture has already been loaded in the cache
     auto it = textureCache.find(clean_filename);
     if (it != textureCache.end())
-        return it->second;
+        return it->second; // return the cached texture ID if found
 
+    // load the image from the given filename or a fallback image
     SDL_Surface *surface = IMG_Load(clean_filename);
     if (!surface)
     {
         printf("Error loading '%s': %s\n", clean_filename, IMG_GetError());
         printf("Using fallback...\n");
-        surface = IMG_Load("resources/textures/missing.png");
+        surface = IMG_Load("resources/textures/missing.png"); // load a missing texture as fallback
     }
 
     if (!surface)
@@ -94,34 +98,41 @@ GLuint load_texture(const char *filename)
 
     printf("Loading texture from: %s\n", clean_filename);
 
+    // convert the surface format to the desired OpenGL format (RGBA or RGB) if necessary
     SDL_PixelFormatEnum target_format = (surface->format->BytesPerPixel == 4)
                                             ? SDL_PIXELFORMAT_RGBA32
                                             : SDL_PIXELFORMAT_RGB24;
     SDL_Surface *converted = SDL_ConvertSurfaceFormat(surface, target_format, 0);
-    SDL_FreeSurface(surface);
     if (!converted)
     {
         printf("Error converting surface format: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
 
+    // define the OpenGL internal and data formats based on the converted surface format (RGBA or RGB)
     GLenum internal_format = (converted->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
     GLenum data_format = internal_format;
 
+    // generate a new OpenGL texture and bind it
     GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
 
+    // set pixel storage alignment to 1 byte
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+    // upload the texture data to OpenGL and configure texture parameters (min/mag filtering, wrapping)
     glTexImage2D(GL_TEXTURE_2D, 0, internal_format, converted->w, converted->h, 0,
                  data_format, GL_UNSIGNED_BYTE, converted->pixels);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // set nearest filtering for minification
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); // set nearest filtering for magnification
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);      // set texture wrapping to repeat in S direction
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);      // set texture wrapping to repeat in T direction
 
+    // free the loaded and converted surfaces and store the texture ID in the cache for future use
     SDL_FreeSurface(converted);
+    SDL_FreeSurface(surface);
     textureCache[clean_filename] = texture;
     return texture;
 }

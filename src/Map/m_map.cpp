@@ -181,18 +181,34 @@ int load_map(const char *filename)
         {
             sscanf(line, "skybox=%255[^\n]", skybox);
             printf("Loaded texture: %s\n", skybox);
-            break;
+            continue;
         }
         if (strstr(line, "1=") != NULL)
         {
-            sscanf(line, "1=%s", wallsTexture);
-            printf("Loaded texture: %s\n", wallsTexture);
-            break;
+            char *equals = strchr(line, '=');
+            if (equals != NULL)
+            {
+                equals++;
+                while (*equals == ' ' || *equals == '\t')
+                    equals++;
+
+                size_t len = strlen(equals);
+                while (len > 0 && (equals[len - 1] == '\n' || equals[len - 1] == '\r' || equals[len - 1] == ' ' || equals[len - 1] == '\t'))
+                {
+                    equals[--len] = '\0';
+                }
+
+                strncpy(wallsTexture, equals, 255);
+                wallsTexture[255] = '\0';
+                printf("Loaded texture: %s\n", wallsTexture);
+            }
+            continue;
         }
     }
 
     fclose(file);
-    printf("Map loaded successfully!\n\n"); // yeah, the map loaded!
+    printf("Map loaded successfully!\n\n");
+
     if (strcmp(branch, "beta") == 0)
     {
         printf("╔════════════ WARNING ════════════╗\n");
